@@ -38,11 +38,15 @@
     </b-container>
 
     <b-container class="bv-example-row" v-if="gameFinished">
-      <FinnishBox
+      <FinishBox
           :numCorrect="numCorrect"
           :numTotal="numTotal"
           :newGame="newGame"
       />
+    </b-container>
+
+    <b-container>
+      <TaskDemo/>
     </b-container>
   </div>
 </template>
@@ -50,15 +54,18 @@
 <script>
 import Header from './components/Header.vue'
 import QuestionBox from './components/QuestionBox.vue'
-import FinnishBox from "@/components/FinishBox";
+import FinishBox from "@/components/FinishBox";
 import StartBox from "@/components/StartBox";
+import TaskDemo from "@/components/QuizHistory";
+
 export default {
   name: 'app',
   components: {
     StartBox,
-    FinnishBox,
+    FinishBox,
     Header,
-    QuestionBox
+    QuestionBox,
+    TaskDemo
   },
   data(){
     return {
@@ -125,6 +132,7 @@ export default {
     },
     gameFinish(){
       this.gameFinished = true
+      TaskDemo.methods.addQuizResult(this.numCorrect,this.numTotal)
     },
     gameStart(actAmount, actSelected, actDiff, actType){
       if(actAmount < 51 && actAmount > 0) {
@@ -154,7 +162,8 @@ export default {
             .then((jsonData) => {
               this.questions = jsonData.results
             })
-    }
+    },
+
   },
 }
 </script>

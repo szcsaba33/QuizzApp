@@ -15,7 +15,7 @@
 
 <script>
     export default {
-        name: "FinnishBox",
+        name: "FinishBox",
         props: [
             'numCorrect',
             'numTotal',

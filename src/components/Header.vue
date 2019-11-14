@@ -4,17 +4,24 @@
             <b-nav-item disabled><b>Quiz App</b></b-nav-item>
             <b-nav-item disabled>Counter: {{numCorrect}}/{{numTotal}} </b-nav-item>
             <b-nav-item disabled>Number of Questions: {{amount}}</b-nav-item>
-            <li v-for="i in optionsCat" v-bind:key="{ value: i.value, text: i.text }">
+
+
+            <li v-for="i in optionsCat" v-bind:key="i.value + 1">
                 <b-nav-item disabled v-if="i.value === selectedCategory">Selected Category: {{i.text}}</b-nav-item>
             </li>
-            <li disabled v-for="i in optionsDiff" v-bind:key="{ value: i.value, text: i.text }">
+
+
+            <li v-for="i in optionsDiff" v-bind:key="i.value + 2">
                 <b-nav-item disabled v-if="i.value === selectedDifficulty">Selected Difficulty: {{i.text}}</b-nav-item >
             </li>
-            <li v-for="i in optionsType" v-bind:key="{ value: i.value, text: i.text }">
+            <li v-for="i in optionsType" v-bind:key="i.value + 3">
                 <b-nav-item disabled v-if="i.value === selectedType">Selected Type: {{i.text}}</b-nav-item>
             </li>
 
-
+        </b-nav>
+        <b-nav align="center">
+            <b-nav-item>Quiz history</b-nav-item>
+            <b-nav-item>Quiz stats</b-nav-item>
         </b-nav>
     </div>
 </template>
